@@ -58,23 +58,23 @@ function Home() {
                     </>
                     :
                     <>  <div className="main-content">
-                        <div className="nav-color">
-                            <h1>Select Navbar Color:</h1>
-                            <button style={{ backgroundColor: 'black' }} onClick={() => setColor("black")}>Black</button>
-                            <button style={{ backgroundColor: 'green' }} onClick={() => setColor("green")}>Green</button>
-                            <button style={{ backgroundColor: 'yellow' }} onClick={() => setColor("yellow")}>yellow</button>
-                            <button style={{ backgroundColor: 'pink' }} onClick={() => setColor("pink")}>Pink</button>
-                            <button style={{ backgroundColor: 'lightblue' }} onClick={() => setColor("lightblue")}>Lightblue</button>
-                            <br />
+                            <div className="nav-color">
+                        <h1>Select Navbar Color:</h1>
+                        <button style={{ backgroundColor: 'black'}} onClick={() => setColor("black")}>Black</button>
+                        <button style={{ backgroundColor: 'green'}} onClick={() => setColor("green")}>Green</button>
+                        <button style={{ backgroundColor: 'yellow'}} onClick={() => setColor("yellow")}>yellow</button>
+                        <button style={{ backgroundColor: 'pink'}} onClick={() => setColor("pink")}>Pink</button>
+                        <button style={{ backgroundColor: 'lightblue'}} onClick={() => setColor("lightblue")}>Lightblue</button>
+                        <br />
                         </div>
                         <div className="main-info">
-                            Add Title: <input type="text" style={{ width: '50%' }} onChange={(e) => setTitle(e.target.value)} />
-                            <br />
-                            Add Desc: <input type="text" style={{ width: '50%' }} onChange={(e) => setDesc(e.target.value)} />
-                            <br />
-                            {/* <h2>Add Image:</h2>
-                            <input type="file" onChange={handleChange} /> */}
-                            {/* <img src={file} /> */}
+                        Add Title: <input type="text" style={{ width: '50%' }} onChange={(e) => setTitle(e.target.value)} />
+                        <br />
+                        Add Desc: <input type="text" style={{ width: '50%' }} onChange={(e) => setDesc(e.target.value)} />
+                        <br />
+                        <h2>Add Image:</h2>
+            <input type="file" onChange={handleChange} />
+            {/* <img src={file} /> */}
                         </div>
                         {
                             displayActive && (
