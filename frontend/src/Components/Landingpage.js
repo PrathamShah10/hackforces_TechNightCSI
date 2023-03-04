@@ -15,7 +15,7 @@ export const Landingpage = () => {
   }, [])
   return (
     <>
-      <div className="content">
+      <div className="content"> 
         <div className='Nav'>
           <h3>{stat[0]?.name}</h3>
         </div>

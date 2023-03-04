@@ -130,4 +130,24 @@ router.post('/volunteersignin', (req, res) => {
         })
 })
 
+router.get('/ngo', async (req, res) => {
+//     User.find((err,data) =>{
+//         if(err){
+//             res.status(500).send(err)
+//         }else{
+//             res.status(200).send(data);
+//         }
+//     })
+
+// })
+try {
+    const data = await User.find();
+    res.send(data);
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+
+});
+
 module.exports = router;
