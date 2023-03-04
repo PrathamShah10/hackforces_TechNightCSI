@@ -1,0 +1,13 @@
+
+*.js
+backend/app.js
+backend/package-lock.json
+backend/routes/details.js
+backend/package-lock.json
+backend/routes/details.js
+frontend/package-lock.json
+frontend/src/Components/css/Dashboard.css
+frontend/src/Components/css/Home.css
+frontend/src/Components/css/Landingpage.css
+frontend/src/Components/Dashboard.js
+frontend/src/Components/Home.js

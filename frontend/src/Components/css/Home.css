@@ -1,20 +1,25 @@
 
-
 .main-content{
-    margin-left: 4rem;
     position: absolute;
     height: 50rem;
-    width: 94%;
-
+    width: 100%;
 
 }
 
+hr{
+    margin-top: 2rem;
+    width: 95%;
+    height: 0.05rem;
+    background-color: rgb(7, 88, 159); 
+}
 .nav-color{
-    background-color: rgb(46, 46, 46); 
-    border-radius: 2rem;
-    height: 12rem;
+    background-color: rgb(7, 88, 159); 
+    margin-top: 2rem;
+    height: 20rem;
 }
 .nav-color h1{  
+    padding-top:4rem ;
+    margin-top: 0;
     margin-left: 2rem;
     font-size: 2rem;
     position: relative;
@@ -23,30 +28,42 @@
     
 }
 
+.nav-color .but{
+    margin: auto;
+    border-radius: 2rem;
+    background-color: rgb(255, 255, 255);
+    width: 97%;
+    height: 7rem;
+}
 .nav-color button{
+    margin-top: 2rem;
     margin-left: 2rem;
     color: white;
     height: 3rem;
     width: 6rem;
     border-radius: 1rem;
     border: none;
+    text-align: center;
+    
 
 }
 
 .main-info{
-    margin-top: 2rem;
-    background-color: rgb(46, 46, 46);
+    
+    background-color: rgb(255, 255, 255);
     border-radius: 1rem;
-    height: 10rem;
-    color: white;
+    height: 25rem;
+    color: rgb(7, 88, 159); 
     padding-left: 2rem;
-    padding-top: 1rem;
-    font-size: 1rem;
+    padding-top: 4rem;
+    font-size: 2rem;
+
     
 }
 
 .main-info input{
-   color: white;
+    color: rgb(7, 88, 159); 
+    font-size:1rem;
 }
 
 .addActi{
@@ -54,7 +71,7 @@
     margin-top: 2rem;
     margin-left: 2rem;
     color: rgb(0, 0, 0);
-    background-color: rgb(24, 255, 78);
+    color: rgb(7, 88, 159); 
     height: 3rem;
     width: 10rem;
     border-radius: 1rem;
@@ -62,13 +79,12 @@
 }
 
 .activity{
-    margin-top:2rem;
+    
     padding-top: 1rem;
     padding-left: 2rem;
-    border-radius: 1rem;
     color: white;
     height: 20rem; 
-    background-color: rgb(52, 52, 52);
+    background-color: rgb(7, 88, 159); 
     animation-iteration-count: 1;
     animation-timing-function: ease-in-out forwards;
     animation-duration: 2s;
@@ -121,9 +137,9 @@
     height: 4rem;
 
  }
-/* 
+
  .imgg{
-    
+    display: none;
     height: 5rem;
  }
 
@@ -132,9 +148,6 @@
     
  }
 
-<<<<<<< HEAD
-  */
-=======
 .upper{
     margin-top: 4rem;
     display: flex;
@@ -147,4 +160,4 @@
     width: 6rem;
     border-radius: 1rem;
 }
->>>>>>> b548621ea4d1b06a984ca9db6e9633e2fed0d729
+
