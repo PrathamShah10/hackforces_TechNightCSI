@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar';
 import Signin from './Components/Signin';
 import Signup from './Components/Signup';
 import './App.css';
+import { Dashboard } from './Components/Dashboard';
 const Routing = () => {
   return (
     <Routes>
@@ -13,6 +14,7 @@ const Routing = () => {
       <Route path="/home" element={<Home />} />
       <Route path="/navbar" element={<NavBar />} />
       <Route path="/signup" element={<Signup />} />
+      <Route path='/Dashboard' element={<Dashboard />} />
     </Routes>
   )
 }

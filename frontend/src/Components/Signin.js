@@ -33,7 +33,7 @@ const Signin = () => {
           localStorage.setItem("user", JSON.stringify(data.user));
           // console.log("hh",localStorage.getItem("jwt"))
           M.toast({ html: "signed in sucessfully", classes: "#43a047 green darken-1" })
-          navigate('/home');
+          navigate('/Dashboard');
         }
       }).catch(err => console.log(err))
   }
