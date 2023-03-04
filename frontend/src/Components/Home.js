@@ -52,41 +52,45 @@ function Home() {
                                 })
                             }
                         </div>
-                        
+
                         <div className='footer'>
-                        
+
                         </div>
                     </>
                     :
                     <>  <div className="main-content">
-                            <div className="nav-color">
-                        <h1>Select Navbar Color:</h1>
-                        <button style={{ backgroundColor: 'black'}} onClick={() => setColor("black")}>Black</button>
-                        <button style={{ backgroundColor: 'green'}} onClick={() => setColor("green")}>Green</button>
-                        <button style={{ backgroundColor: 'yellow'}} onClick={() => setColor("yellow")}>yellow</button>
-                        <button style={{ backgroundColor: 'pink'}} onClick={() => setColor("pink")}>Pink</button>
-                        <button style={{ backgroundColor: 'lightblue'}} onClick={() => setColor("lightblue")}>Lightblue</button>
-                        <br />
+
+                        <div className="nav-color">
+                            <div className='upper'>
+                                <h1>Select Navbar Color:</h1>
+                                <div id="sel_color" style={{ backgroundColor: color, width: "2rem", height: "2rem" }}></div>
+                            </div>
+                            <button style={{ backgroundColor: 'black' }} onClick={() => setColor("black")}>Black</button>
+                            <button style={{ backgroundColor: 'green' }} onClick={() => setColor("green")}>Green</button>
+                            <button style={{ backgroundColor: 'yellow' }} onClick={() => setColor("yellow")}>yellow</button>
+                            <button style={{ backgroundColor: 'pink' }} onClick={() => setColor("pink")}>Pink</button>
+                            <button style={{ backgroundColor: 'lightblue' }} onClick={() => setColor("lightblue")}>Lightblue</button>
+                            <br />
                         </div>
                         <div className="main-info">
-                        Add Title: <input type="text" style={{ width: '50%' }} onChange={(e) => setTitle(e.target.value)} />
-                        <br />
-                        Add Desc: <input type="text" style={{ width: '50%' }} onChange={(e) => setDesc(e.target.value)} />
-                        <br />
-                        <h2>Add Image:</h2>
-            <input type="file" onChange={handleChange} />
-            {/* <img src={file} /> */}
+                            Add Title: <input type="text" style={{ width: '50%' }} onChange={(e) => setTitle(e.target.value)} />
+                            <br />
+                            Add Desc: <input type="text" style={{ width: '50%' }} onChange={(e) => setDesc(e.target.value)} />
+                            <br />
+                            <h2>Add Image:</h2>
+                            <input type="file" onChange={handleChange} />
+                            {/* <img src={file} /> */}
                         </div>
                         {
                             displayActive && (
                                 <>
                                     <div className="activity">
-                                    <h4>Add activity name:</h4>
-                                    <input type="text"  style={{ width: '50%' }} onChange={(e) => setActTitle(e.target.value)} />
-                                    <h4>Add activity description:</h4>
-                                    <input type="text"  style={{ width: '50%' }} onChange={(e) => setActDesc(e.target.value)} />
-                                    
-                                    
+                                        <h4>Add activity name:</h4>
+                                        <input type="text" style={{ width: '50%' }} onChange={(e) => setActTitle(e.target.value)} />
+                                        <h4>Add activity description:</h4>
+                                        <input type="text" style={{ width: '50%' }} onChange={(e) => setActDesc(e.target.value)} />
+
+
                                     </div>
                                     <button id='submitt' className='addActi' onClick={() => {
                                         setDisplayActive(false);
@@ -103,14 +107,14 @@ function Home() {
                             )
                         }
                         <button className='addActi' onClick={(e) => setGenerate(true)}>Preview</button>
-                        </div>
-                        
+                    </div>
+
                     </>
-                    
+
             }
             <button onClick={localStorage.clear()}>SignOut</button>
         </>
     )
 }
 
-            export default Home;
+export default Home;
