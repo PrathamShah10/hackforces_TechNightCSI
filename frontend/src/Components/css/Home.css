@@ -12,13 +12,11 @@
 .nav-color{
     background-color: rgb(46, 46, 46); 
     border-radius: 2rem;
-    height: 10rem;
+    height: 12rem;
 }
 .nav-color h1{  
     margin-left: 2rem;
     font-size: 2rem;
-    padding-top: 2rem; 
-    margin-top: 3rem;
     position: relative;
     color: white;
   
@@ -134,4 +132,19 @@
     
  }
 
+<<<<<<< HEAD
   */
+=======
+.upper{
+    margin-top: 4rem;
+    display: flex;
+}
+
+#sel_color{
+    margin-top: 3rem;
+    margin-left: 1rem;
+    height: 3rem;
+    width: 6rem;
+    border-radius: 1rem;
+}
+>>>>>>> b548621ea4d1b06a984ca9db6e9633e2fed0d729
