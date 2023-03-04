@@ -8,6 +8,7 @@ const path = require("path")
 
 // app.use(cors())
 require('./models/model')
+require('./models/webdata')
 app.use(express.json())
 app.use(require("./routes/auth"))
 app.use(require("./routes/details"))

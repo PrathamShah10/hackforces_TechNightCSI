@@ -6,6 +6,7 @@ import NavBar from './Components/NavBar';
 import Signin from './Components/Signin';
 import Signup from './Components/Signup';
 import { Landingpage } from './Components/Landingpage';
+import Display from './Components/Display';
 import './App.css';
 import { Dashboard } from './Components/Dashboard';
 const Routing = () => {
@@ -17,6 +18,8 @@ const Routing = () => {
       <Route path="/signup" element={<Signup />} />
       <Route path="/landingpage" element={<Landingpage />} />
       <Route path='/Dashboard' element={<Dashboard />} />
+      <Route path='/Dashboard' element={<Dashboard />} />
+      <Route path='/display' element={<Display />} />
     </Routes>
   )
 }

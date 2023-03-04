@@ -31,6 +31,26 @@ function Home() {
         }
         setActDetails(arr)
     }, [count])
+    const postWeb = () => {
+        const useris = JSON.parse(localStorage.getItem("user"));
+        const userid = useris._id
+        fetch('/putwebdata',{
+            method:'post',
+            headers: {
+                "Content-Type": "application/json"
+              },
+            body: JSON.stringify({
+                title,
+                desc,
+                actDetails,
+                userid
+            })
+        })
+        .then(res=>res.json())
+        .then((result)=> {
+            console.log("webpage save res",result)
+        })
+    }
     return (
         <>
             {
@@ -52,9 +72,7 @@ function Home() {
                             }
                         </div>
 
-                        <div className='footer'>
-
-                        </div>
+                            <button onClick={()=>postWeb()}>Finalize</button>
                     </>
                     :
                     <>  <div className="main-content">
