@@ -1,83 +1,87 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import M from 'materialize-css';
+const Signin = () => {
+  const navigate = useNavigate()
+  // const [name,setName]=useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
-import { Link, useNavigate } from "react-router-dom";
-import { toast } from 'react-toastify';
-
-export default function SignIn() {
-
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-
-  // Toast functions
-  const notifyA = (msg) => toast.error(msg)
-  const notifyB = (msg) => toast.success(msg)
-
-  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-  const postData = () => {
-    //checking email
-    if (!emailRegex.test(email)) {
-      notifyA("Invalid email")
+  const PostData = () => {
+    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+      M.toast({ html: "invalid email", classes: "#c62828 red darken-3" })
       return
     }
-    // Sending data to server
-    fetch("http://localhost:5000/signin", {
+    fetch("/signin", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: email,
-        password: password
-
+        email,
+        password
       })
-    }).then(res => res.json())
-      .then(data => {
+    })
+      .then(res => res.json())
+      .then((data) => {
         if (data.error) {
-          notifyA(data.error)
-        } else {
-          notifyB("Signed In Successfully")
-          console.log(data)
-          localStorage.setItem("jwt", data.token)
-          localStorage.setItem("user", JSON.stringify(data.user))
-
-          navigate("/")
-          // for updating profile picture on Navbar we are reloading 
-          window.location.reload();
-
+          M.toast({ html: data.error, classes: "#c62828 red darken-3" })
         }
-        console.log(data)
-      })
+        else {
+          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("user", JSON.stringify(data.user));
+          M.toast({ html: "signed in sucessfully", classes: "#43a047 green darken-1" })
+          navigate('/');
+        }
+      }).catch(err => console.log(err))
   }
-
+  const changetype = () => {
+    if (showPassword) {
+      let x = document.getElementById('password');
+      x.type = 'text'
+      setShowPassword(false)
+    }
+    else {
+      let x = document.getElementById('password');
+      x.type = 'password'
+      setShowPassword(true)
+    }
+  }
   return (
-    <div className="signIn">
-      <div>
-        <div className="loginForm">
-         
-          <div>
-            <input type="email" name="email" id="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
-            />
-          </div>
-          <input type="submit" id="login-btn" onClick={() => { postData() }} value="Sign In" />
+    <div className="mycard">
+      <div className="card auth-card input-field">
+        <h2>SignIn</h2>
+        <div className="login-block">
+          <input type="text"
+            placeholder="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            id="username"
+          />
+          <input type="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            id="password"
+          />
+          {/* <span className='spanv'><i className="material-icons" onClick={() => changetype()}>remove_red_eye</i></span> */}
         </div>
-        <div className="loginForm2">
-          Don't have an account ?
-          <Link to="/signup">
-            <span style={{ color: "blue", cursor: "pointer" }}>Sign Up</span>
-          </Link>
+
+        <button className="btn waves-effect waves-light #64b5f6 dark blue"
+          onClick={() => PostData()}
+        >
+          SignIn
+        </button>
+        <div>
+          <Link to="/signup">New User?</Link>
         </div>
+        <h6><Link to="/reset">Forgot Password?</Link></h6>
       </div>
     </div>
-  );
+
+
+  )
 }
+
+export default Signin

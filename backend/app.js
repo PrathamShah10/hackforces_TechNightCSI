@@ -6,7 +6,7 @@ const { mongoUrl } = require("./keys");
 const cors = require("cors");
 const path = require("path")
 
-app.use(cors())
+// app.use(cors())
 require('./models/model')
 app.use(express.json())
 app.use(require("./routes/auth"))

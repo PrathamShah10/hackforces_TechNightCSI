@@ -1,112 +1,138 @@
-
-import React, { useEffect, useState } from "react";
-
-import { Link, useNavigate } from "react-router-dom";
-
-import { toast } from 'react-toastify';
-
-
-
-
-
-export default function SignUp() {
+import React, { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
+import M from 'materialize-css';
+const Signup = () => {
   const navigate = useNavigate()
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("")
-  const [userName, setUserName] = useState("")
-  const [password, setPassword] = useState("")
-
-  // Toast functions
-  const notifyA = (msg) => toast.error(msg)
-  const notifyB = (msg) => toast.success(msg)
-
-  const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/
-
-  const postData = () => {
-    //checking email
-    if (!emailRegex.test(email)) {
-      notifyA("Invalid email")
-      return
-    } else if (!passRegex.test(password)) {
-      notifyA("Password must contain at least 8 characters, including at least 1 number and 1 includes both lower and uppercase letters and special characters for example #,?,!")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [image, setImage] = useState(null);
+  const [url, setUrl] = useState(undefined);
+  const [showPassword, setShowPassword] = useState(false);
+  useEffect(() => {
+    if (url) {
+      uploadFields()
+    }
+  }, [url])
+  const uploadpic = () => {
+    const data = new FormData();
+    data.append("file", image)
+    data.append("upload_preset", "socail_media-app")
+    data.append("cloud_name", "bdg77jk4eui")
+    fetch("https://api.cloudinary.com/v1_1/bdg77jk4eui/image/upload", {
+      method: "post",
+      body: data
+    })
+      .then(res => res.json())
+      .then(data => {
+        setUrl(data.url);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  const uploadFields = () => {
+    if(!name || !email || !password) {
+      M.toast({ html: "Enter all credentials", classes: "#c62828 red darken-3" })
       return
     }
-
-    // Sending data to server
-    fetch("http://localhost:5000/signup", {
+    if(password.length < 8) {
+      M.toast({ html: "Password should be atleast 8 characters", classes: "#c62828 red darken-3" })
+      return
+    }
+    if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+      M.toast({ html: "invalid email", classes: "#c62828 red darken-3" })
+      return
+    }
+    fetch("/signup", {
       method: "post",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        name: name,
-        userName: userName,
-        email: email,
-        password: password
-
+        name,
+        email,
+        password,
       })
-    }).then(res => res.json())
-      .then(data => {
+    })
+      .then(res => res.json())
+      .then((data) => {
         if (data.error) {
-          notifyA(data.error)
-        } else {
-          notifyB(data.message)
-          navigate("/signin")
+          M.toast({ html: data.error, classes: "#c62828 red darken-3" })
         }
-        console.log(data)
-      })
+        else {
+          M.toast({ html: data.message, classes: "#43a047 green darken-1" })
+          navigate('/signin');
+        }
+      }).catch(err => console.log(err))
   }
-
+  const PostData = () => {
+    if (image) {
+      uploadpic()
+    }
+    else {
+      uploadFields()
+    }
+  }
+  const changetype = () => {
+    if (showPassword) {
+      let x = document.getElementById('password');
+      x.type = 'text'
+      setShowPassword(false)
+    }
+    else {
+      let x = document.getElementById('password');
+      x.type = 'password'
+      setShowPassword(true)
+    }
+  }
   return (
-    <div className="signUp">
-      <div className="form-container">
-        <div className="form">
-          <p className="loginPara">
-            Sign up to see photos and videos <br /> from your friends
-          </p>
-          <div>
-            <input type="email" name="email" id="email" value={email} placeholder="Email" onChange={(e) => { setEmail(e.target.value) }} />
-          </div>
-          <div>
-            <input type="text" name="name" id="name" placeholder="Full Name" value={name} onChange={((e) => { setName(e.target.value) })} />
-          </div>
-          <div>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Username"
-              value={userName}
-              onChange={(e) => { setUserName(e.target.value) }}
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => { setPassword(e.target.value) }}
-            />
-          </div>
-          <p
-            className="loginPara"
-            style={{ fontSize: "12px", margin: "3px 0px" }}
-          >
-            By signing up, you agree to out Terms, <br /> privacy policy and
-            cookies policy.
-          </p>
-          <input type="submit" id="submit-btn" value="Sign Up" onClick={() => { postData() }} />
+    <div className="mycard">
+      <div className="card auth-card input-field">
+        <h2>SignUp</h2>
+        <input type="text"
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <div className="login-block">
+          <input type="text"
+            placeholder="email"
+            id='username'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input type="password"
+            placeholder="password"
+            id='password'
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          {/* <span className='spanv'><i className="material-icons" onClick={() => changetype()}>remove_red_eye</i></span> */}
         </div>
-        <div className="form2">
-          Already have an account ?
-          <Link to="/signin">
-            <span style={{ color: "blue", cursor: "pointer" }}>Sign In</span>
-          </Link>
+        <div className="file-field input-field">
+          <div className="btn #64b5f6 blue darken-1">
+            <span>Uplaod Profile Picture</span>
+            <input type="file"
+              onChange={(e) => setImage(e.target.files[0])}
+            />
+          </div>
+          <div className="file-path-wrapper">
+            <input className="file-path validate" type="text" />
+          </div>
+        </div>
+
+        <button className="btn waves-effect waves-light #64b5f6 dark blue"
+          onClick={() => PostData()}
+        >
+          Signup
+        </button>
+        <div>
+          <Link to="/signin">Already a User?</Link>
         </div>
       </div>
     </div>
-  );
+  )
 }
+
+export default Signup 
