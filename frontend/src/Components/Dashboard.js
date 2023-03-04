@@ -47,7 +47,7 @@ export const Dashboard = () => {
     const renderCard = (card, index) => {
         return (
             <>
-                <Card className="Card" style={{ width: '15rem', height: '16rem', color: "black" }} key={index}  onClick={
+                <Card className="Card" style={{ width: '15rem', height: '16rem',  color: 'white'}} key={index}  onClick={
                     ()=>{
                         setTitle(card.title)
                         setDesc(card.desc)
@@ -87,6 +87,7 @@ export const Dashboard = () => {
                                     {eve.map(renderCard)}
                                 </div>
                             </div>
+                            <hr />
                             <div className="past_events">
                                 past events
                             </div>
