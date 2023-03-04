@@ -9,6 +9,10 @@ import { Landingpage } from './Components/Landingpage';
 import Display from './Components/Display';
 import './App.css';
 import { Dashboard } from './Components/Dashboard';
+import Volunteersignup from './Components/Volunteersignup';
+import Volunteersignin from './Components/Volunteersignin';
+import { Vhomepage } from './Components/Vhomepage';
+
 const Routing = () => {
   return (
     <Routes>
@@ -20,6 +24,11 @@ const Routing = () => {
       <Route path='/Dashboard' element={<Dashboard />} />
       <Route path='/Dashboard' element={<Dashboard />} />
       <Route path='/display' element={<Display />} />
+      <Route path='/volunteersignup' element={<Volunteersignup />} />
+      <Route path='/volunteersignin' element={<Volunteersignin />} />
+      <Route path='/Vhomepage' element={<Vhomepage/>} />
+
+
     </Routes>
   )
 }
