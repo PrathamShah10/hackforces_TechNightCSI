@@ -8,8 +8,8 @@ const { JWT_SECRET } = require('../keys');
 const User = mongoose.model('User');
 const router = express.Router();
 router.post('/signup', (req, res) => {
-    const { name, email, password, pic } = req.body;
-    if (!email || !password || !name) {
+    const { name, email, password, goal, desc, contact } = req.body;
+    if (!email || !password || !name || !goal || !desc || !contact) {
         return res.status(422).json({ error: 'please add all fields' });
     }
     User.findOne({ email: email })
@@ -20,10 +20,12 @@ router.post('/signup', (req, res) => {
             bcrypt.hash(password, 12)
                 .then(hashedpass => {
                     const user = new User({
-                        email,
-                        password: hashedpass,
                         name,
-                        pic
+                        email,
+                        goal,
+                        desc,
+                        contact,
+                        password: hashedpass
                     })
                     user.save()
                         .then(user => {

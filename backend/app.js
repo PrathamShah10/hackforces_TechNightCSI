@@ -10,6 +10,7 @@ const path = require("path")
 require('./models/model')
 app.use(express.json())
 app.use(require("./routes/auth"))
+app.use(require("./routes/details"))
 mongoose.connect(mongoUrl);
 
 mongoose.connection.on("connected", () => {
