@@ -1,0 +1,11 @@
+.cp{
+    width:250px;
+    height:250px;
+    border:1px solid green;
+    border-radius: 10px;
+    background-color: lightblue;
+}
+
+.cp:hover {
+    transform: scale(1.1); 
+  }
