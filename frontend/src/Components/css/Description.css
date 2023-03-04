@@ -1,0 +1,15 @@
+.des{
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out forwards;
+    animation-duration: 2s;
+    animation-name:mess;
+    height: 15rem;
+    background-color: rgb(35, 35, 35);
+}
+
+.des h2{
+    padding: 2rem;
+    color: white;
+    margin: 0;
+    font-size: 2rem;
+}

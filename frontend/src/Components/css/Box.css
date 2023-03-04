@@ -1,9 +1,12 @@
 .cp{
-    width:250px;
-    height:250px;
+    width:300px;
+    height:300px;
     border:1px solid green;
     border-radius: 10px;
     background-color: lightblue;
+    text-align: center;     
+    color: white;
+    margin-left: 2rem;
 }
 
 .cp:hover {

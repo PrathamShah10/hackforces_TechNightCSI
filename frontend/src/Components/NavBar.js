@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
+import "./css/Navbar.css"
 const NavBar = (props) => {
     return (
         <nav>

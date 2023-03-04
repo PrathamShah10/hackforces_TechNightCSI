@@ -4,83 +4,100 @@ import { BrowserRouter, Navigate, Route, Routes, useNavigate, useLocation } from
 import NavBar from './NavBar';
 import Description from './Description';
 import Box from './Box';
+import "./css/Home.css"
+
 function Home() {
     const [color, setColor] = useState("");
     const [title, setTitle] = useState("");
-    const [desc,setDesc] = useState("");
-    const [displayActive,setDisplayActive] = useState(false);
-    const [actTitle,setActTitle] = useState("");
-    const [actDesc,setActDesc] = useState("");
-    const [count,setCount] = useState(0);
-    const [actDetails,setActDetails] = useState([]);
+    const [desc, setDesc] = useState("");
+    const [displayActive, setDisplayActive] = useState(false);
+    const [actTitle, setActTitle] = useState("");
+    const [actDesc, setActDesc] = useState("");
+    const [count, setCount] = useState(0);
+    const [actDetails, setActDetails] = useState([]);
     const [generate, setGenerate] = useState(false);
-    useEffect(()=> {
+    useEffect(() => {
         let arr = actDetails;
-        if(actTitle&& actDesc) {
+        if (actTitle && actDesc) {
             arr.push({
                 actTitle,
                 actDesc
             })
         }
         setActDetails(arr)
-    },[count])
+    }, [count])
     return (
         <>
             {
                 generate
                     ?
                     <>
-                        <NavBar color={color} title={title}/>
-                        <Description desc={desc}/>
-                        <div style={{display:'flex',justifyContent:'space-evenly',flexWrap:'wrap'}}>
-                        {
-                            actDetails?.map((ele)=> {
-                                return(
-                                    <Box width="100px" height="100px" title={ele.actTitle} desc={ele.actDesc}/>
-                                )
-                            })
-                        }
+                        <NavBar color={color} title={title} />
+                        <Description desc={desc} />
+                        <div style={{ display: 'flex', margin: '2rem', flexWrap: 'wrap' }}>
+                            {
+                                actDetails?.map((ele) => {
+                                    return (
+                                        <Box color={color} width="100px" height="100px" title={ele.actTitle} desc={ele.actDesc} />
+                                    )
+                                })
+                            }
+                        </div>
+                        <div className='footer'>
+                        
                         </div>
                     </>
                     :
-                    <>
-                        <h1>select color:</h1>
-                        <button onClick={() => setColor("black")}>black</button>
-                        <button onClick={() => setColor("green")}>green</button>
-                        <button onClick={() => setColor("blue")}>blue</button>
-                        <button onClick={() => setColor("pink")}>pink</button>
-                        <button onClick={() => setColor("black")}>black</button>
+                    <>  <div className="main-content">
+                            <div className="nav-color">
+                        <h1>Select Navbar Color:</h1>
+                        <button style={{ backgroundColor: 'black'}} onClick={() => setColor("black")}>Black</button>
+                        <button style={{ backgroundColor: 'green'}} onClick={() => setColor("green")}>Green</button>
+                        <button style={{ backgroundColor: 'yellow'}} onClick={() => setColor("yellow")}>yellow</button>
+                        <button style={{ backgroundColor: 'pink'}} onClick={() => setColor("pink")}>Pink</button>
+                        <button style={{ backgroundColor: 'lightblue'}} onClick={() => setColor("lightblue")}>Lightblue</button>
                         <br />
-                        add title: <input type="text" style={{ width: '25%' }} onChange={(e) => setTitle(e.target.value)} />
+                        </div>
+                        <div className="main-info">
+                        Add Title: <input type="text" style={{ width: '50%' }} onChange={(e) => setTitle(e.target.value)} />
                         <br />
-                        add desc: <input type="text" style={{ width: '25%' }} onChange={(e) => setDesc(e.target.value)} />
-                        <br/>
+                        Add Desc: <input type="text" style={{ width: '50%' }} onChange={(e) => setDesc(e.target.value)} />
+                        <br />
+                        </div>
                         {
                             displayActive && (
                                 <>
-                                <h4>Add activity name:</h4>
-                                <input type="text" onChange={(e)=>setActTitle(e.target.value)}/>
-                                <h4>Add activity description:</h4>
-                                <input type="text" onChange={(e)=>setActDesc(e.target.value)}/>
-                                <button onClick={()=> {
-                                    setDisplayActive(false);
-                                    setCount(count+1);
-                                }}>
-                                    Submit
-                                </button>
+                                    <div className="activity">
+                                    <h4>Add activity name:</h4>
+                                    <input type="text"  style={{ width: '50%' }} onChange={(e) => setActTitle(e.target.value)} />
+                                    <h4>Add activity description:</h4>
+                                    <input type="text"  style={{ width: '50%' }} onChange={(e) => setActDesc(e.target.value)} />
+                                    
+                                    
+                                    </div>
+                                    <button id='submitt' className='addActi' onClick={() => {
+                                        setDisplayActive(false);
+                                        setCount(count + 1);
+                                    }}>
+                                        Submit
+                                    </button>
                                 </>
                             )
                         }
                         {
                             !displayActive && (
-                                <button onClick={()=>setDisplayActive(true)}>Add activities</button>
+                                <button className='addActi' onClick={() => setDisplayActive(true)}>Add activities</button>
                             )
                         }
-                        <button onClick={(e) => setGenerate(true)}>Preview</button>
+                        <button className='addActi' onClick={(e) => setGenerate(true)}>Preview</button>
+                        </div>
+                        
                     </>
+                    
             }
-        </>
+            
+                    </>
     )
 }
 
-export default Home;
+            export default Home;
