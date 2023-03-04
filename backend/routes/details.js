@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = require('../keys');
 const User = mongoose.model('User');
 const Web = mongoose.model('Web');
+
 const router = express.Router();
 router.get('/getngodata/:id',(req,res)=> {
     User.find({_id:req.params.id})
