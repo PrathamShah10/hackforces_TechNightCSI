@@ -95,7 +95,7 @@ function Home() {
                     </>
 
             }
-            <button onClick={localStorage.clear()}>SignOut</button>
+            {/* <button onClick={localStorage.clear()}>SignOut</button> */}
         </>
     )
 }

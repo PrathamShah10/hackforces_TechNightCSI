@@ -31,8 +31,9 @@ const Signin = () => {
         else {
           localStorage.setItem("jwt", data.token);
           localStorage.setItem("user", JSON.stringify(data.user));
+          // console.log("hh",localStorage.getItem("jwt"))
           M.toast({ html: "signed in sucessfully", classes: "#43a047 green darken-1" })
-          navigate('/');
+          navigate('/home');
         }
       }).catch(err => console.log(err))
   }

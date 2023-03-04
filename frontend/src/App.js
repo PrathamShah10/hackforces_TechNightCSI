@@ -7,27 +7,21 @@ import Signin from './Components/Signin';
 import Signup from './Components/Signup';
 import './App.css';
 const Routing = () => {
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user == null) {
-      Navigate('/signin')
-    }
-  }, [])
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route exact path="/" element={<Signin />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/navbar" element={<NavBar />} />
-      <Route path="/signin" element={<Signin />} />
       <Route path="/signup" element={<Signup />} />
     </Routes>
   )
 }
 function App() {
   return (
-        <BrowserRouter>
-          <Routing />
-        </BrowserRouter>
-      );
+    <BrowserRouter>
+      <Routing />
+    </BrowserRouter>
+  );
 
 }
 
